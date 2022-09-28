@@ -1,36 +1,32 @@
 import { Injectable } from '@nestjs/common';
+import { v4 as uuidv4 } from 'uuid';
+import { UpdateUserDto } from './dto/update-user.dto';
 
-export type User = {
-  id: number;
-  name: string;
-  username: string;
-  password: string;
-};
+import { User } from './schemas/user.schema';
+import { UsersRepository } from './user.repository';
 
 @Injectable()
 export class UsersService {
-  private readonly users: User[] = [
-    {
-      id: 1,
-      name: 'Talha Abbasi',
-      username: 'talhaabbasi',
-      password: 'sosecure',
-    },
-    {
-      id: 2,
-      name: 'Talha Abbasi',
-      username: 'talhaabbasii',
-      password: 'sosecure1',
-    },
-    {
-      id: 3,
-      name: 'Talha Abbasi',
-      username: 'talhaabbasii',
-      password: 'sosecure2',
-    },
-  ];
+  constructor(private readonly usersRepository: UsersRepository) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async getUserById(userId: string): Promise<User> {
+    return this.usersRepository.findOne({ userId });
+  }
+
+  async getUsers(): Promise<User[]> {
+    return this.usersRepository.find({});
+  }
+
+  async createUser(email: string, age: number): Promise<User> {
+    return this.usersRepository.create({
+      userId: uuidv4(),
+      email,
+      age,
+      languages: [],
+    });
+  }
+
+  async updateUser(userId: string, userUpdates: UpdateUserDto): Promise<User> {
+    return this.usersRepository.findOneAndUpdate({ userId }, userUpdates);
   }
 }
