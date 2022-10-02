@@ -15,7 +15,7 @@ export class User {
   @Prop()
   age: number;
 
-  @Prop([String])
+  @Prop({ type: [String], enum: ProgrammingLanguage })
   programmingLanguages: ProgrammingLanguage[];
 }
 

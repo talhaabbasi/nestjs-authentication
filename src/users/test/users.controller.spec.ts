@@ -1,4 +1,5 @@
 import { Test } from '@nestjs/testing';
+import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from '../schemas/user.schema';
@@ -70,6 +71,10 @@ describe('UsersController', () => {
         createUserDto = {
           email: userStub().email,
           age: userStub().age,
+          programmingLanguages: [
+            ProgrammingLanguage.JAVASCRIPT,
+            ProgrammingLanguage.PYTHON,
+          ],
         };
         user = await usersController.createUser(createUserDto);
       });
@@ -95,7 +100,7 @@ describe('UsersController', () => {
       beforeEach(async () => {
         updateUserDto = {
           age: 98,
-          favoriteFoods: ['pizza'],
+          programmingLanguages: [ProgrammingLanguage.JAVASCRIPT],
         };
         user = await usersController.updateUser(
           userStub().userId,

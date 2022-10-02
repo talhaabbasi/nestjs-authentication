@@ -9,6 +9,11 @@ import { UsersRepository } from './users.repository';
 export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
+  async userExists(email: string): Promise<boolean> {
+    const user = await this.usersRepository.findOne({ email });
+    return user ? true : false;
+  }
+
   async getUserById(userId: string): Promise<User> {
     return this.usersRepository.findOne({ userId });
   }

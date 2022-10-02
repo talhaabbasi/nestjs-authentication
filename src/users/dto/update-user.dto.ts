@@ -1,4 +1,8 @@
+import { IsNotEmpty } from 'class-validator';
+
 export class UpdateUserDto {
-  favoriteFoods: string[];
+  @IsNotEmpty()
+  programmingLanguages: string[];
+  @IsNotEmpty()
   age: number;
 }
