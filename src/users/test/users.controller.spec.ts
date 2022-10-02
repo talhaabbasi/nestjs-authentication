@@ -80,10 +80,7 @@ describe('UsersController', () => {
       });
 
       test('then it should call usersService', () => {
-        expect(usersService.createUser).toHaveBeenCalledWith(
-          createUserDto.email,
-          createUserDto.age,
-        );
+        expect(usersService.createUser).toHaveBeenCalledWith(createUserDto);
       });
 
       test('then it should return a user', () => {
