@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 import { User } from './schemas/user.schema';
@@ -22,12 +23,10 @@ export class UsersService {
     return this.usersRepository.find({});
   }
 
-  async createUser(email: string, age: number): Promise<User> {
+  async createUser(user: CreateUserDto): Promise<User> {
     return this.usersRepository.create({
       userId: uuidv4(),
-      email,
-      age,
-      languages: [],
+      ...user,
     });
   }
 
