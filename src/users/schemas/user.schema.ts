@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ProgrammingLanguage } from '../../enum/programming.language.enum';
 import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
@@ -14,8 +15,8 @@ export class User {
   @Prop()
   age: number;
 
-  @Prop([String])
-  languages: string[];
+  @Prop({ type: [String], enum: ProgrammingLanguage })
+  programmingLanguages: ProgrammingLanguage[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
