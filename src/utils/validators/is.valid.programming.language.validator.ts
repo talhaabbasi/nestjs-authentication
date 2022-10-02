@@ -5,7 +5,7 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
+import { ProgrammingLanguage } from '../../enum/programming.language.enum';
 
 @ValidatorConstraint({ name: 'isValidProgrammingLanguage', async: true })
 @Injectable()

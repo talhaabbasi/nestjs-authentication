@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
+import { ProgrammingLanguage } from '../../enum/programming.language.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from '../schemas/user.schema';

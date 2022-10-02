@@ -1,4 +1,4 @@
-import { ProgrammingLanguage } from '../../../../enum/programming.language.enum';
+import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
 import { User } from '../../schemas/user.schema';
 
 export const userStub = (): User => {

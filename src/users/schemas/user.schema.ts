@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
+import { ProgrammingLanguage } from '../../enum/programming.language.enum';
 import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
