@@ -6,7 +6,6 @@ import {
   ValidatorConstraintInterface,
 } from 'class-validator';
 import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
-let invalidLanguages: ProgrammingLanguage[];
 
 @ValidatorConstraint({ name: 'isValidProgrammingLanguage', async: true })
 @Injectable()
@@ -15,7 +14,7 @@ class IsValidProgrammingLanguageConstraint
 {
   async validate(programmingLanguages: [ProgrammingLanguage]) {
     const languages = Object.values(ProgrammingLanguage);
-    invalidLanguages = programmingLanguages.filter(
+    const invalidLanguages: ProgrammingLanguage[] = programmingLanguages.filter(
       (language) => !languages.includes(language),
     );
     return invalidLanguages.length > 0 ? false : true;
@@ -25,7 +24,6 @@ class IsValidProgrammingLanguageConstraint
 export function IsValidProgrammingLanguage(
   validationOptions?: ValidationOptions,
 ) {
-  validationOptions.message = `${invalidLanguages} programming languages do not exist!`;
   return function (object: any, propertyName: string) {
     registerDecorator({
       target: object.constructor,
