@@ -46,7 +46,7 @@ describe('UsersRepository', () => {
         test('then it should call the userModel', () => {
           expect(userModel.findOne).toHaveBeenCalledWith(userFilterQuery, {
             _id: 0,
-            __v: 0,
+            _v: 0,
           });
         });
 
