@@ -5,7 +5,7 @@ import { IsValidProgrammingLanguage } from '../../utils/validators/is.valid.prog
 export class CreateUserDto {
   @IsNotEmpty({ message: 'Email cannot be empty. Please check documentation' })
   @IsEmail({
-    message: 'Invalid Email. Please sure the correct format',
+    message: 'Invalid Email. Please use the correct format',
   })
   @IsEmailUserAlreadyExist({
     message: 'Email address already exists!',
@@ -17,7 +17,7 @@ export class CreateUserDto {
 
   @IsNotEmpty({
     message:
-      'Programming Languages cannot be empty, please check documentation',
+      'Programming Languages cannot be empty. Please check documentation',
   })
   @IsValidProgrammingLanguage({
     message:
