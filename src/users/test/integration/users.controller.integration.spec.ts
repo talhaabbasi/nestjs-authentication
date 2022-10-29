@@ -6,6 +6,8 @@ import { DatabaseService } from '../../../database/database.service';
 import { userStub } from '../stubs/user.stub';
 import * as request from 'supertest';
 import { CreateUserDto } from '../../dto/create-user.dto';
+import { UpdateUserDto } from '../../dto/update-user.dto';
+import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
 
 describe('UsersController', () => {
   let dbConnection: Connection;
@@ -75,6 +77,24 @@ describe('UsersController', () => {
         .collection('users')
         .findOne({ email: createUserRequest.email });
       expect(user).toMatchObject(createUserRequest);
+    });
+  });
+
+  describe('updateUser', () => {
+    it('should update a user', async () => {
+      await dbConnection.collection('users').insertOne(userStub());
+
+      const updateUserRequest: UpdateUserDto = {
+        programmingLanguages: [ProgrammingLanguage.JAVASCRIPT],
+        age: userStub().age,
+      };
+
+      const response = await request(httpServer)
+        .patch(`/users/${userStub().userId}`)
+        .send(updateUserRequest);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toMatchObject(updateUserRequest);
     });
   });
 });
