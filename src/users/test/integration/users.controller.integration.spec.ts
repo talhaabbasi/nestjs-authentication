@@ -18,8 +18,6 @@ describe('UsersController', () => {
       imports: [AppModule],
     }).compile();
 
-    console.log(process.env.MONGODB_URL);
-
     app = moduleRef.createNestApplication();
 
     dbConnection = moduleRef
@@ -85,8 +83,6 @@ describe('UsersController', () => {
   describe('updateUser', () => {
     it('should update a user', async () => {
       await dbConnection.collection('users').insertOne(userStub());
-
-      console.log('Test');
 
       const updateUserRequest: UpdateUserDto = {
         programmingLanguages: [ProgrammingLanguage.JAVASCRIPT],
