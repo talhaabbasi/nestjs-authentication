@@ -11,12 +11,6 @@ jobs:
         node-version: [16.x]
     
     steps:
-      - name: 'Create env file'
-        run: |
-          touch .env
-          echo MONGO_TEST_CONNECTION_URI=${{ secrets.MONGO_TEST_CONNECTION_URI }} >> .env
-          cat .env
-          
       - name: Copy repository
         uses: actions/checkout@v2
       
@@ -30,6 +24,12 @@ jobs:
       
       - name: Lint code
         run: yarn run lint
+
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo MONGO_TEST_CONNECTION_URI=${{ secrets.MONGO_TEST_CONNECTION_URI }} >> .env
+          cat .env
       
       - name: Run tests
         run: yarn run test
