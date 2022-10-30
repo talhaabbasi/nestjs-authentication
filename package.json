@@ -61,6 +61,30 @@
     "typescript": "^4.7.4"
   },
   "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 20,
+        "lines": 60,
+        "statements": 60
+      }
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s",
+      "!main.(t|j)s",
+      "!**/*.module.(t|j)s",
+      "!**/*.input.(t|j)s",
+      "!**/*.entity.(t|j)s"
+    ],
+    "coveragePathIgnorePatterns": [
+      "node_modules",
+      "test-config",
+      "interfaces",
+      "jestGlobalMocks.ts",
+      ".module.ts",
+      "<rootDir>/src/main.ts",
+      ".mock.ts"
+    ],
     "moduleFileExtensions": [
       "js",
       "json",
@@ -71,9 +95,6 @@
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }
