@@ -84,6 +84,8 @@ describe('UsersController', () => {
     it('should update a user', async () => {
       await dbConnection.collection('users').insertOne(userStub());
 
+      console.log('Test');
+
       const updateUserRequest: UpdateUserDto = {
         programmingLanguages: [ProgrammingLanguage.JAVASCRIPT],
         age: userStub().age,
