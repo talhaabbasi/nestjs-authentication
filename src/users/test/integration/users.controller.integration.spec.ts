@@ -18,6 +18,8 @@ describe('UsersController', () => {
       imports: [AppModule],
     }).compile();
 
+    console.log(process.env.MONGODB_URL);
+
     app = moduleRef.createNestApplication();
 
     dbConnection = moduleRef
