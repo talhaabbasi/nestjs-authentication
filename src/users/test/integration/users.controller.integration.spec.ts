@@ -33,7 +33,7 @@ describe('UsersController', () => {
     await app.close();
   });
 
-  beforeEach(async () => {
+  afterEach(async () => {
     await dbConnection.collection('users').deleteMany({});
   });
 
