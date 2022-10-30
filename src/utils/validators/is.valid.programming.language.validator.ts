@@ -12,7 +12,10 @@ import { ProgrammingLanguage } from '../../enum/programming.language.enum';
 class IsValidProgrammingLanguageConstraint
   implements ValidatorConstraintInterface
 {
-  async validate(programmingLanguages: [ProgrammingLanguage]) {
+  async validate(
+    programmingLanguages: [ProgrammingLanguage],
+  ): Promise<boolean> {
+    if (!programmingLanguages) return false;
     const languages = Object.values(ProgrammingLanguage);
     const invalidLanguages: ProgrammingLanguage[] = programmingLanguages.filter(
       (language) => !languages.includes(language),
