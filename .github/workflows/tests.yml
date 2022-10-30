@@ -29,6 +29,8 @@ jobs:
         run: |
           touch .env
           echo MONGO_TEST_CONNECTION_URI=${{ secrets.MONGO_TEST_CONNECTION_URI }} >> .env
+          echo MONGO_CONNECTION_URI=${{ secrets.MONGO_CONNECTION_URI }} >> .env
+          echo MONGODB_URL=${{ secrets.MONGODB_URL }} >> .env
           cat .env
       
       - name: Run tests
