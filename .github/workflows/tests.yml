@@ -25,13 +25,16 @@ jobs:
       - name: Lint code
         run: yarn run lint
 
+      - name: Create mongoDB Docker container      
+        run: sudo docker run -d -p 27017:27017 mongo:latest
+
       - name: 'Create env file'
         run: |
           touch .env
-          echo MONGO_TEST_CONNECTION_URI=${{ secrets.MONGO_TEST_CONNECTION_URI }} >> .env
+          echo MONGO_TEST_CONNECTION_URI=mongodb://localhost:27017/users-test >> .env
           echo MONGO_CONNECTION_URI=${{ secrets.MONGO_CONNECTION_URI }} >> .env
           echo MONGODB_URL=${{ secrets.MONGODB_URL }} >> .env
           cat .env
-      
+    
       - name: Run tests
         run: yarn run test
