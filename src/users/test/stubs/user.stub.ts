@@ -6,6 +6,10 @@ export const userStub = (): User => {
     userId: '123',
     email: 'test@example.com',
     age: 23,
+    username: 'test',
+    password: 'test',
+    firstName: 'test',
+    lastName: 'test',
     programmingLanguages: [ProgrammingLanguage.JAVASCRIPT],
   };
 };
