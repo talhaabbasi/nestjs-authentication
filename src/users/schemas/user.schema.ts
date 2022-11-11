@@ -13,6 +13,18 @@ export class User {
   email: string;
 
   @Prop()
+  username: string;
+
+  @Prop()
+  firstName: string;
+
+  @Prop()
+  lastName: string;
+
+  @Prop()
+  password: string;
+
+  @Prop()
   age: number;
 
   @Prop({ type: [String], enum: ProgrammingLanguage })
