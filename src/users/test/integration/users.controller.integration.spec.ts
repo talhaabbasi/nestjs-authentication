@@ -10,6 +10,8 @@ import { CreateUserDto } from '../../dto/create-user.dto';
 import { UpdateUserDto } from '../../dto/update-user.dto';
 import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
 
+jest.setTimeout(30000);
+
 describe('UsersController', () => {
   let dbConnection: Connection;
   let httpServer: any;
