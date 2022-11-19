@@ -1,4 +1,3 @@
-jest.useFakeTimers();
 import { INestApplication } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { Connection } from 'mongoose';
@@ -9,8 +8,7 @@ import * as request from 'supertest';
 import { CreateUserDto } from '../../dto/create-user.dto';
 import { UpdateUserDto } from '../../dto/update-user.dto';
 import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
-
-jest.setTimeout(30000);
+jest.useFakeTimers();
 
 describe('UsersController', () => {
   let dbConnection: Connection;
