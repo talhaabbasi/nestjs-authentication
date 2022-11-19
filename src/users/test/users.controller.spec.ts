@@ -1,5 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { ProgrammingLanguage } from '../../enum/programming.language.enum';
+import { UserRole } from '../../enum/user.role.enum';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from '../schemas/user.schema';
@@ -75,6 +76,7 @@ describe('UsersController', () => {
             ProgrammingLanguage.JAVASCRIPT,
             ProgrammingLanguage.PYTHON,
           ],
+          role: UserRole.STUDENT,
         };
         user = await usersController.createUser(createUserDto);
       });
