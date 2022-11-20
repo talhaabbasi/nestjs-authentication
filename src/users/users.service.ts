@@ -20,7 +20,10 @@ export class UsersService {
   }
 
   async getUserByUsername(username: string): Promise<User> {
-    return this.usersRepository.findOne({ username });
+    return this.usersRepository.findOneWithFields(
+      { username },
+      { userId: 1, password: 1 },
+    );
   }
 
   async getUsers(): Promise<User[]> {

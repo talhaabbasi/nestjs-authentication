@@ -16,9 +16,18 @@ export abstract class EntityRepository<T extends Document> {
       .exec();
   }
 
-  async find(entityFilterQuery: FilterQuery<T>): Promise<T[] | null> {
-    console.log('TEST');
+  async findOneWithFields(
+    entityFilterQuery: FilterQuery<T>,
+    projection?: Record<string, unknown>,
+  ): Promise<T | null> {
+    return this.entityModel
+      .findOne(entityFilterQuery, {
+        ...projection,
+      })
+      .exec();
+  }
 
+  async find(entityFilterQuery: FilterQuery<T>): Promise<T[] | null> {
     return this.entityModel.find(entityFilterQuery);
   }
 

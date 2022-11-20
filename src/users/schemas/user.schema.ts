@@ -13,7 +13,7 @@ export class User {
   @Prop()
   email: string;
 
-  @Prop()
+  @Prop({ select: false })
   username: string;
 
   @Prop()
@@ -22,7 +22,7 @@ export class User {
   @Prop()
   lastName: string;
 
-  @Prop()
+  @Prop({ select: false })
   password: string;
 
   @Prop({ type: String, enum: UserRole })
