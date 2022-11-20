@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
+import * as argon2 from 'argon2';
 import { User } from './schemas/user.schema';
 import { UsersRepository } from './users.repository';
 
@@ -28,9 +28,11 @@ export class UsersService {
   }
 
   async createUser(user: CreateUserDto): Promise<User> {
+    const password = await argon2.hash(user.password);
     return this.usersRepository.create({
       userId: uuidv4(),
       ...user,
+      password,
     });
   }
 

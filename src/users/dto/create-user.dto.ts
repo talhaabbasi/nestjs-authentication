@@ -33,4 +33,14 @@ export class CreateUserDto {
     message: 'Role is not correct. Please check documentation',
   })
   role: string;
+
+  @IsNotEmpty({
+    message: 'Username cannot be empty. Please check documentation',
+  })
+  username: string;
+
+  @IsNotEmpty({
+    message: 'Password cannot be empty. Please check documentation',
+  })
+  password: string;
 }

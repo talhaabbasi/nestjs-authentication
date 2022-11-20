@@ -25,7 +25,7 @@ export class User {
   @Prop()
   password: string;
 
-  @Prop()
+  @Prop({ type: String, enum: UserRole })
   role: UserRole;
 
   @Prop()

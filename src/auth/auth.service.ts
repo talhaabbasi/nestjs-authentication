@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '../users/schemas/user.schema';
 import { JwtPayload } from './interfaces/jwt.payload.interface';
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +14,7 @@ export class AuthService {
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.userService.getUserByUsername(username);
 
-    if (user && user.password === password) {
+    if (user && argon2.verify(user.password, password)) {
       const { userId } = user;
       return userId;
     }
