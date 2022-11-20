@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ProgrammingLanguage } from '../../enum/programming.language.enum';
 import { Document } from 'mongoose';
+import { UserRole } from '../../enum/user.role.enum';
 
 export type UserDocument = User & Document;
 
@@ -23,6 +24,9 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop()
+  role: UserRole;
 
   @Prop()
   age: number;

@@ -1,4 +1,5 @@
 import { ProgrammingLanguage } from '../../../enum/programming.language.enum';
+import { UserRole } from '../../../enum/user.role.enum';
 import { User } from '../../schemas/user.schema';
 
 export const userStub = (): User => {
@@ -11,5 +12,6 @@ export const userStub = (): User => {
     firstName: 'test',
     lastName: 'test',
     programmingLanguages: [ProgrammingLanguage.JAVASCRIPT],
+    role: UserRole.STUDENT,
   };
 };
