@@ -15,16 +15,15 @@ export class AuthService {
     const user = await this.userService.getUserByUsername(username);
 
     if (user && argon2.verify(user.password, password)) {
-      const { userId } = user;
-      return userId;
+      return user;
     }
 
     return null;
   }
 
-  login(userId: string): { access_token: string } {
-    const payload: JwtPayload = { sub: userId };
+  login(user) {
+    const payload: JwtPayload = { sub: user?.userId };
     const access_token: string = this.jwtService.sign(payload);
-    return { access_token };
+    return { access_token, user };
   }
 }

@@ -22,7 +22,17 @@ export class UsersService {
   async getUserByUsername(username: string): Promise<User> {
     return this.usersRepository.findOneWithFields(
       { username },
-      { userId: 1, password: 1 },
+      {
+        username: 1,
+        email: 1,
+        firstName: 1,
+        lastName: 1,
+        role: 1,
+        age: 1,
+        programmingLanguages: 1,
+        userId: 1,
+        password: 1,
+      },
     );
   }
 
