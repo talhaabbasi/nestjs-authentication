@@ -10,6 +10,11 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalGuards(new JwtAuthGuard());
+  app.enableCors({
+    allowedHeaders: 'content-type',
+    origin: 'http://localhost:3001',
+    credentials: true,
+  });
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   const port = configService.get('port');
