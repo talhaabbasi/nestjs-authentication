@@ -11,7 +11,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalGuards(new JwtAuthGuard());
   app.enableCors({
-    allowedHeaders: 'content-type',
     origin: 'http://localhost:3001',
     credentials: true,
   });
