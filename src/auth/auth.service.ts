@@ -13,11 +13,10 @@ export class AuthService {
 
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.userService.getUserByUsername(username);
-    const isPasswordCorrect = await argon2.verify(user.password, password);
+    if (!user) return null;
 
-    if (user && isPasswordCorrect) {
-      return user;
-    }
+    const isPasswordCorrect = await argon2.verify(user?.password, password);
+    if (isPasswordCorrect) return user;
 
     return null;
   }
