@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UsersService } from '../users/users.service';
-import { JwtPayload } from './interfaces/jwt.payload.interface';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class PassportJwtStrategy extends PassportStrategy(Strategy) {
@@ -18,8 +18,15 @@ export class PassportJwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: JwtPayload) {
-    const user = await this.usersService.getUserById(payload.sub);
-    return user;
+  async isValidToken(token: string) {
+    try {
+      const validToken = jwt.verify(
+        token,
+        this.configService.get('JWT_SECRET'),
+      );
+      return validToken ? true : false;
+    } catch (err) {
+      return false;
+    }
   }
 }

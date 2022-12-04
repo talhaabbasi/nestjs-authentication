@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
+import { PublicRoute } from './utils/decorators/public.route.decorator';
 import { LocalAuthGuard } from './utils/guards/local.auth.guard';
 
 @Controller()
@@ -17,6 +18,7 @@ export class AppController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
+  @PublicRoute()
   login(@Request() req): any {
     return this.authService.login(req.user);
   }

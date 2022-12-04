@@ -24,6 +24,6 @@ import { PassportJwtStrategy } from './passport.jwt.strategy';
     }),
   ],
   providers: [AuthService, PassportLocalStrategy, PassportJwtStrategy],
-  exports: [AuthService],
+  exports: [AuthService, PassportJwtStrategy],
 })
 export class AuthModule {}
